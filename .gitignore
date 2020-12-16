@@ -2,3 +2,7 @@ training*
 testing*
 img-downsampler
 # image-super-resolution
+weights
+log*
+submission*
+.vscode
