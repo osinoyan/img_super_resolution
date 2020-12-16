@@ -6,7 +6,6 @@ from ISR.models import RRDN
 from ISR.models import Discriminator
 from ISR.models import Cut_VGG19
 from ISR.train import Trainer
-import argparse
 
 # lr_train_patch_size = 40
 lr_train_patch_size = 25
@@ -48,18 +47,6 @@ learning_rate = {
 
 flatness = {'min': 0.0, 'max': 0.15, 'increase': 0.01, 'increase_frequency': 5}
 
-# Parse command line arguments
-parser = argparse.ArgumentParser(
-    description='')
-parser.add_argument('--epoch', required=True,
-                    default=100,
-                    metavar="<epoch num>",
-                    help='num of epochs',
-                    )
-args = parser.parse_args()
-
-n_epoch = args.epoch
-
 trainer = Trainer(
     generator=rrdn,
     discriminator=discr,
@@ -79,8 +66,8 @@ trainer = Trainer(
 )
 
 trainer.train(
-    epochs=n_epoch,
-    steps_per_epoch=50,
-    batch_size=4,
+    epochs=100,
+    steps_per_epoch=500,
+    batch_size=16,
     monitored_metrics={'val_generator_PSNR_Y': 'max'}
 )

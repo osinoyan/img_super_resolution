@@ -33,10 +33,6 @@ $ conda create -n cv_img_sr python=3.6
 $ conda activate cv_img_sr
 $ pip install -r requirements.txt
 ```
-:::danger
-Make sure you have installed the correct version of packages:
-`tensorflow=2.3.1`
-:::
 
 ## Dataset Preparation
 
@@ -59,14 +55,13 @@ $ mkdir training_lr
 $ python img-downsampler/downsample.py training/ training_lr/
 ```
 
-:::danger
 Sadly, for training images with size(height/width) not multply of 3 can cause problem of inconsistency inputs to the network, it is necessory to modify the *image-super-resolution/ISR/utils/datahandler.py*. The modified file was under the root directory of our repo *img_super_resolution/datahandler.py*, you have to copy it and replace *image-super-resolution/ISR/utils/datahandler.py* manually.
 ```
 $ cd img_super_resolution/
 $ cp -f datahandler.py image-super-resolution/ISR/utils/
 ```
 Thanks to this issue comment [#54](https://github.com/idealo/image-super-resolution/issues/54#issuecomment-519464785), the modification is mostly based on code from this comment.
-:::
+
 ## Training
 We briefly provide the instructions to train and test the model on HW4 dataset.
 For more information, see [idealo/image-super-resolution repo](https://github.com/idealo/image-super-resolution).
@@ -74,7 +69,7 @@ For more information, see [idealo/image-super-resolution repo](https://github.co
 ### train models
 To train ESRGNN(using RDNN) model, run the following commands.
 ```
-python train_custom.py --epoch 1000
+python train_custom.py
 ```
 ### test and make submission files
 After training, try using the trained model to test the prepared testing data.
